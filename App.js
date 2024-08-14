@@ -40,7 +40,7 @@ export default function App() {
                 buttonTitle: '✅ Mark Complete',
                 options: {
                     isAuthenticationRequired: false,
-                    opensAppToForeground: true,
+                    opensAppToForeground: false,
                 },
             },
             {
@@ -48,7 +48,7 @@ export default function App() {
                 buttonTitle: '🕒 Reschedule',
                 options: {
                     isAuthenticationRequired: false,
-                    opensAppToForeground: true,
+                    opensAppToForeground: false,
                 },
             },
         ])
@@ -102,6 +102,7 @@ export default function App() {
         };
     }, []);
     async function scheduleSimpleNotification() {
+        console.log("Scheduling")
         await Notifications.scheduleNotificationAsync({
             content: {
                 title: "Task Reminder",
@@ -113,6 +114,10 @@ export default function App() {
             },
         });
     }
+
+    useEffect(() => {
+        scheduleSimpleNotification();
+    }, []);
 
 
     return (
